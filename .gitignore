@@ -1,0 +1,36 @@
+# Ruby Gem
+*.gem
+*.rbc
+.bundle
+.config
+.yardoc
+Gemfile.lock
+InstalledFiles
+_yardoc
+coverage
+doc/
+lib/bundler/man
+pkg
+rdoc
+spec/reports
+test/tmp
+test/version_tmp
+tmp
+
+# NPM
+node_modules
+
+# Grunt
+.grunt
+
+# SASS/SCSS cache files
+*.scssc
+*.sassc
+.sass-cache
+
+# Mac finder artifacts
+.DS_Store
+
+# Sublime Text project files
+*.sublime-project
+*.sublime-workspace
