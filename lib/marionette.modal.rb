@@ -2,8 +2,6 @@ require "marionette.modal/version"
 
 module MarionetteModal
   module Assets
-    def self.MarionetteModal
-      File.open('../src/marionette.modal.coffee', 'r').read
-    end
+    MARIONETTE_MODAL_COFFEE = File.open(File.join(File.dirname('..', __FILE__), 'src', 'marionette.modal.coffee'), 'r').read
   end
 end
