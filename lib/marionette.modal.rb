@@ -1,5 +1,9 @@
 require "marionette.modal/version"
 
 module MarionetteModal
-  # Your code goes here...
+  module Assets
+    def MarionetteModal
+      File.open('../src/marionette.modal.coffee', 'r').read
+    end
+  end
 end
