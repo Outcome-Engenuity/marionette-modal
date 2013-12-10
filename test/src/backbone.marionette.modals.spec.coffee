@@ -9,7 +9,7 @@ describe 'Backbone.Marionette.Modals', ->
         selector:     '#modals'
         regionType:    Backbone.Marionette.Modals
 
-  class modal extends Backbone.Modal
+  class BackboneModal extends Backbone.Modal
     viewContainer: 'div'
     cancelEl: '.close'
     submitEl: '.submit'
@@ -19,7 +19,18 @@ describe 'Backbone.Marionette.Modals', ->
         view: -> '<p>html</p>'
     cancel: ->
     submit: ->
-  
+
+  class MarionetteModal extends Marionette.Modal
+    viewContainer: 'div'
+    cancelEl: '.close'
+    submitEl: '.submit'
+    template: -> '<a id="id"></a><div></div><a class="close"></a><a class="submit"></a>'
+    views:
+      'click #id':
+        view: -> '<p>html</p>'
+    cancel: ->
+    submit: ->
+
   myLayout = new layout()
 
   describe '#show', ->
@@ -29,14 +40,12 @@ describe 'Backbone.Marionette.Modals', ->
 
     it 'should disable modals with zIndex < modal', ->
 
-
   describe '#close', ->
     it 'should only close the last modal', ->
       myLayout.modals.close()
       expect(myLayout.modals.zIndex).toBe(0)
 
     it 'should enable the last modal', ->
-      
 
   describe '#closeAll', ->
     it 'should close all the modals', ->
