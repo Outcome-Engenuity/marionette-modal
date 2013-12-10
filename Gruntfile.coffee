@@ -1,5 +1,4 @@
 module.exports = (grunt) ->
-module.exports = (grunt) ->
   fs = require('fs')
 
   grunt.initConfig
@@ -30,34 +29,36 @@ module.exports = (grunt) ->
 
     uglify:
       modal:
-        src: 'backbone.modal.js'
-        dest: 'backbone.modal-min.js'
+        src: 'dist/backbone.modal.js'
+        dest: 'dist/backbone.modal-min.js'
       marionettemodal:
-        src: 'marionette.modal.js'
-        dest: 'marionette.modal-min.js'
+        src: 'dist/marionette.modal.js'
+        dest: 'dist/marionette.modal-min.js'
       modals:
-        src: 'backbone.marionette.modals.js'
-        dest: 'backbone.marionette.modals-min.js'
+        src: 'dist/backbone.marionette.modals.js'
+        dest: 'dist/backbone.marionette.modals-min.js'
       bundled:
-        src: 'marionette.modal-bundled.js'
-        dest: 'marionette.modal-bundled-min.js'
+        src: 'dist/marionette.modal-bundled.js'
+        dest: 'dist/marionette.modal-bundled-min.js'
 
     jasmine:
       all:
-        src: ['backbone.modal.js', 'marionette.modal.js', 'backbone.marionette.modals.js']
+        src: ['dist/backbone.modal.js', 'dist/marionette.modal.js', 'dist/backbone.marionette.modals.js']
         options:
           specs: 'test/spec/**/*.js'
           outfile: 'test/spec.html'
           host: 'http://127.0.0.1:8000/'
           vendor: ['examples/vendor/jquery-1.9.1.js', 'examples/vendor/underscore.js', 'examples/vendor/backbone.js', 'examples/vendor/marionette.js']
 
+    clean: ['dist']
+
     coffee:
       all:
         files:
-          'backbone.modal.js': 'src/backbone.modal.coffee'
-          'marionette.modal.js': 'src/marionette.modal.coffee'
-          'backbone.marionette.modals.js': 'src/backbone.marionette.modals.coffee'
-          'marionette.modal-bundled.js': ['src/backbone.modal.coffee', 'src/marionette.modal.coffee', 'src/backbone.marionette.modals.coffee']
+          'dist/backbone.modal.js': 'src/backbone.modal.coffee'
+          'dist/marionette.modal.js': 'src/marionette.modal.coffee'
+          'dist/backbone.marionette.modals.js': 'src/backbone.marionette.modals.coffee'
+          'dist/marionette.modal-bundled.js': ['src/backbone.modal.coffee', 'src/marionette.modal.coffee', 'src/backbone.marionette.modals.coffee']
 
           'examples/vendor/backbone.modal.js': 'src/backbone.modal.coffee'
           'examples/vendor/marionette.modal.js': 'src/marionette.modal.coffee'
@@ -72,8 +73,8 @@ module.exports = (grunt) ->
     sass:
       compile:
         files:
-          'marionette.modal.css': 'src/marionette.modal.sass'
-          'marionette.modal.theme.css': 'src/marionette.modal.theme.sass'
+          'dist/marionette.modal.css': 'src/marionette.modal.sass'
+          'dist/marionette.modal.theme.css': 'src/marionette.modal.theme.sass'
           'examples/vendor/marionette.modal.css': 'src/marionette.modal.sass'
           'examples/vendor/marionette.modal.theme.css': 'src/marionette.modal.theme.sass'
           'examples/style.css': 'src/style.sass'
@@ -87,7 +88,7 @@ module.exports = (grunt) ->
         tasks: ['livereload']
       livereloadCSS:
         files: ['examples/vendor/marionette.modal.css', 'examples/vendor/marionette.modal.theme.css', 'examples/style.css']
-        tasks: ['livereload:marionette.modal.css', 'livereload:examples/vendor/marionette.modal.theme.css', 'livereload:examples/style.css']
+        tasks: ['livereload:dist/marionette.modal.css', 'livereload:examples/vendor/marionette.modal.theme.css', 'livereload:examples/style.css']
       sass:
         files: ['src/**/*.sass']
         tasks: ['sass']
@@ -96,6 +97,7 @@ module.exports = (grunt) ->
         tasks: ['uglify', 'coffee']
 
   grunt.loadNpmTasks 'grunt-contrib-coffee'
+  grunt.loadNpmTasks 'grunt-contrib-clean'
   grunt.loadNpmTasks 'grunt-regarde'
   grunt.loadNpmTasks 'grunt-open'
   grunt.loadNpmTasks 'grunt-contrib-connect'
@@ -105,5 +107,5 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-contrib-sass'
   grunt.loadNpmTasks 'grunt-concurrent'
 
-  grunt.registerTask 'build', ['concurrent', 'uglify', 'jasmine:all:build']
-  grunt.registerTask 'watch', ['connect', 'build', 'livereload-start', 'open', 'regarde']
+  grunt.registerTask 'build', ['clean', 'concurrent', 'uglify', 'jasmine:all:build']
+  grunt.registerTask 'watch', ['connect', 'clean', 'build', 'livereload-start', 'open', 'regarde']

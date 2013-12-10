@@ -390,7 +390,7 @@
     throw new Error("Marionette is not defined. Please include the latest version from https://github.com/marionettejs/backbone.marionette");
   }
 
-  Backbone.Modal = (function(_super) {
+  Marionette.Modal = (function(_super) {
     __extends(Modal, _super);
 
     Modal.prototype.prefix = 'bbm';
