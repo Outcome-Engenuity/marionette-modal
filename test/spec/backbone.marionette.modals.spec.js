@@ -3,7 +3,7 @@
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
   describe('Backbone.Marionette.Modals', function() {
-    var layout, modal, myLayout, _ref, _ref1;
+    var BackboneModal, MarionetteModal, layout, myLayout, _ref, _ref1, _ref2;
     myLayout = {};
     layout = (function(_super) {
       __extends(layout, _super);
@@ -27,25 +27,25 @@
       return layout;
 
     })(Backbone.Marionette.Layout);
-    modal = (function(_super) {
-      __extends(modal, _super);
+    BackboneModal = (function(_super) {
+      __extends(BackboneModal, _super);
 
-      function modal() {
-        _ref1 = modal.__super__.constructor.apply(this, arguments);
+      function BackboneModal() {
+        _ref1 = BackboneModal.__super__.constructor.apply(this, arguments);
         return _ref1;
       }
 
-      modal.prototype.viewContainer = 'div';
+      BackboneModal.prototype.viewContainer = 'div';
 
-      modal.prototype.cancelEl = '.close';
+      BackboneModal.prototype.cancelEl = '.close';
 
-      modal.prototype.submitEl = '.submit';
+      BackboneModal.prototype.submitEl = '.submit';
 
-      modal.prototype.template = function() {
+      BackboneModal.prototype.template = function() {
         return '<a id="id"></a><div></div><a class="close"></a><a class="submit"></a>';
       };
 
-      modal.prototype.views = {
+      BackboneModal.prototype.views = {
         'click #id': {
           view: function() {
             return '<p>html</p>';
@@ -53,13 +53,46 @@
         }
       };
 
-      modal.prototype.cancel = function() {};
+      BackboneModal.prototype.cancel = function() {};
 
-      modal.prototype.submit = function() {};
+      BackboneModal.prototype.submit = function() {};
 
-      return modal;
+      return BackboneModal;
 
     })(Backbone.Modal);
+    MarionetteModal = (function(_super) {
+      __extends(MarionetteModal, _super);
+
+      function MarionetteModal() {
+        _ref2 = MarionetteModal.__super__.constructor.apply(this, arguments);
+        return _ref2;
+      }
+
+      MarionetteModal.prototype.viewContainer = 'div';
+
+      MarionetteModal.prototype.cancelEl = '.close';
+
+      MarionetteModal.prototype.submitEl = '.submit';
+
+      MarionetteModal.prototype.template = function() {
+        return '<a id="id"></a><div></div><a class="close"></a><a class="submit"></a>';
+      };
+
+      MarionetteModal.prototype.views = {
+        'click #id': {
+          view: function() {
+            return '<p>html</p>';
+          }
+        }
+      };
+
+      MarionetteModal.prototype.cancel = function() {};
+
+      MarionetteModal.prototype.submit = function() {};
+
+      return MarionetteModal;
+
+    })(Marionette.Modal);
     myLayout = new layout();
     describe('#show', function() {
       it('should stack a modal view', function() {
