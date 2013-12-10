@@ -1,7 +1,7 @@
 unless Marionette?
   throw new Error("Marionette is not defined. Please include the latest version from https://github.com/marionettejs/backbone.marionette")
 
-class Backbone.Modal extends Marionette.View
+class Marionette.Modal extends Marionette.View
   prefix: 'bbm'
 
   constructor: ->
