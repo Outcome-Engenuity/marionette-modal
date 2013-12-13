@@ -1,16 +1,16 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'marionette.modal/version'
+require 'marionette-modal/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "marionette.modal"
+  spec.name          = "marionette-modal"
   spec.version       = MarionetteModal::VERSION
   spec.authors       = ["Jared Smith"]
   spec.email         = ["jcsmith1859@gmail.com"]
   spec.description   = "Fork of Backbone.Modal Backbone.js plugin"
   spec.summary       = "Fork of the Backbone.Modal Backbone.js plugin that is more tightly integrated with Marionette.js"
-  spec.homepage      = "https://github.com/Outcome-Engenuity/marionette.modal"
+  spec.homepage      = "https://github.com/Outcome-Engenuity/marionette-modal"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)

@@ -1,4 +1,4 @@
-require "marionette.modal/version"
+require "marionette-modal/version"
 
 module MarionetteModal
   module Assets
