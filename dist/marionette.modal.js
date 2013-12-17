@@ -25,7 +25,7 @@
     }
 
     Modal.prototype.render = function(options) {
-      var data, _ref,
+      var data, html, template, _ref,
         _this = this;
       if (options == null) {
         options = {};
@@ -33,9 +33,9 @@
       data = this.serializeData();
       this.$el.addClass("" + this.prefix + "-wrapper");
       this.modalEl = Marionette.$('<div />').addClass("" + this.prefix + "-modal");
-      if (this.template) {
-        this.modalEl.html(this.template(data));
-      }
+      template = this.getTemplate();
+      html = Marionette.Renderer.render(template, data);
+      this.modalEl.html(html);
       this.$el.html(this.modalEl);
       Marionette.$('body').on('keyup', this.checkKey);
       Marionette.$('body').on('click', this.clickOutside);

@@ -17,7 +17,9 @@ class Marionette.Modal extends Marionette.View
 
     @$el.addClass("#{@prefix}-wrapper")
     @modalEl = Marionette.$('<div />').addClass("#{@prefix}-modal")
-    @modalEl.html @template(data) if @template
+    template = @getTemplate()
+    html = Marionette.Renderer.render(template, data)
+    @modalEl.html(html)
     @$el.html @modalEl
 
     # global events for key and click outside the modal
